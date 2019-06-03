@@ -14,13 +14,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "Contact2019_table";
     public static final String ID = "ID";
     public static final String COLUMN_NAME_CONTACT = "Name";
-    public static final String COLUMN_NUMBER_CONTACT = "Phone Number";
-    public static final String COLUMN_SPAGHETTI_CONTACT = "Spaghetti";
+    public static final String COLUMN_NAME_NUMBER = "Number";
+    public static final String COLUMN_NAME_SPAGHETTI = "Spaghetti";
 
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    COLUMN_NAME_CONTACT + " TEXT)";
+                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_NAME_CONTACT + " TEXT, "
+                    + COLUMN_NAME_NUMBER + " TEXT, "
+                    + COLUMN_NAME_SPAGHETTI + " TEXT)";
 
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS" + TABLE_NAME;
 
@@ -49,8 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME_CONTACT, name);
-        contentValues.put(COLUMN_NUMBER_CONTACT, number);
-        contentValues.put(COLUMN_SPAGHETTI_CONTACT, spaghetti);
+        contentValues.put(COLUMN_NAME_NUMBER, number);
+        contentValues.put(COLUMN_NAME_SPAGHETTI, spaghetti);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -67,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllData (){
         Log.d("MyContactApp", "DatabaseHelper: called getAllData");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME,null );
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME,null);
         return res;
     }
 }

@@ -56,8 +56,13 @@ public class MainActivity extends AppCompatActivity {
         StringBuffer buffer = new StringBuffer();
 
         Log.d( "MyContactApp",  "MainActivity: Buffer instantiated");
+        while (res.moveToNext()){
+            buffer.append("ID: " + res.getString(0) + "\n");
+            buffer.append("Name: " + res.getString(1) + "\n");
+            buffer.append("Number: " + res.getString(2) + "\n");
+            buffer.append("Spaghetti: " + res.getString(3) + "\n");
+        }
 
-        buffer.append("ID: " + res.getString(0) + "\n");
 
         Log.d( "MyContactApp",  "MainActivity: Buffer appended");
 
@@ -76,6 +81,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void search (View view){
+        Cursor result = myDb.getAllData();
+        StringBuffer buffer = new StringBuffer();
 
+        if (result.getCount() == 0){
+            showMessage("Error", "No data");
+            return;
+        }
+
+        while (result.moveToNext()){
+            if(!editName.getText().toString().equals("") && editNumber.getText().toString().equals("") && editSpaghetti.getText().toString().equals("")){
+                if (result.getString(1).substring(0, editName.getText().toString().length()).equals(editName.getText().toString())){
+                    buffer.append("ID: " + result.getString(0) + "\n");
+                    buffer.append("Name: " + result.getString(1) + "\n");
+                    buffer.append("Number: " + result.getString(2) + "\n");
+                    buffer.append("Spaghetti: " + result.getString(3) + "\n");
+                }
+            }
+
+            else if(editName.getText().toString().equals("") && !editNumber.getText().toString().equals("") && editSpaghetti.getText().toString().equals("")){
+                if (result.getString(1).substring(0, editNumber.getText().toString().length()).equals(editNumber.getText().toString())){
+                    buffer.append("ID: " + result.getString(0) + "\n");
+                    buffer.append("Name: " + result.getString(1) + "\n");
+                    buffer.append("Number: " + result.getString(2) + "\n");
+                    buffer.append("Spaghetti: " + result.getString(3) + "\n");
+                }
+            }
+
+            else if(editName.getText().toString().equals("") && editNumber.getText().toString().equals("") && !editSpaghetti.getText().toString().equals("")){
+                if (result.getString(1).substring(0, editSpaghetti.getText().toString().length()).equals(editSpaghetti.getText().toString())){
+                    buffer.append("ID: " + result.getString(0) + "\n");
+                    buffer.append("Name: " + result.getString(1) + "\n");
+                    buffer.append("Number: " + result.getString(2) + "\n");
+                    buffer.append("Spaghetti: " + result.getString(3) + "\n");
+                }
+            }
+        }
+
+        showMessage("Data", buffer.toString());
     }
 }
