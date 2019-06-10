@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        showMessage("Data", buffer.toString());
+        if (!buffer.toString().equals(""))
+            showMessage("Data", buffer.toString());
+        else showMessage("Data", "No contact found");
     }
 }

@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginBottom="160dp"
         android:onClick="addData"
         android:text="Add Contact"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,19 +87,19 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="160dp"
         android:onClick="viewData"
         android:text="View Contact"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/button" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="84dp"
         android:onClick="search"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
